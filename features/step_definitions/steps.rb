@@ -1,8 +1,12 @@
 Given(/^user Annalisa is a registered user$/) do
 end
 Given(/^<page> is opened$/) do
-  visit 'https://app.cloverpop.com/users/sign_in'
-  sleep 3
+  visit 'https://cp-business-integration4.herokuapp.com/users/sign_up'
+  fill_in 'First Name', with: 'Artem'
+  fill_in 'Last Name', with: 'Sychov'
+  fill_in 'Email', with: 'artemsuchov@gmail.com'
+  fill_in 'Password', with: 'password'
+  click_on 'Sign up with Email'
 end
 
 Given(/^Log in is opened$/) do
