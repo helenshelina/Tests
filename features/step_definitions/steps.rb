@@ -1,9 +1,13 @@
 Given(/^user Annalisa is a registered user$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+end
+Given(/^<page> is opened$/) do
+  visit 'https://app.cloverpop.com/users/sign_in'
+  sleep 3
 end
 
 Given(/^Log in is opened$/) do
-  visit 'https://app.cloverpop.com/users/sign_in'
+pending # Write code here that turns the phrase above into concrete actions
+
 end
 
 When(/^Annalisa fills login form with valid credentials$/) do

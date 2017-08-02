@@ -1,10 +1,13 @@
 require 'capybara'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
+require 'capybara/selenium/driver'
 require 'site_prism'
 
+Capybara.default_driver = :selenium
+#Capybara.app_host = "http://www.google.com"
 Capybara.register_driver :selenium do |app|
-  # profile = Selenium::WebDriver::Firefox::Profile.new
-  # Capybara::Selenium::Driver.new( app, {:browser => :firefox, :profile => profile} )
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+ Capybara::Selenium::Driver.new app, browser: :chrome
 end
+
+World(Capybara::DSL)
