@@ -14,8 +14,9 @@ When(/^Annalisa fills login form with valid credentials$/) do
 end
 
 When(/^Annalisa fills form with valid credentials$/) do
-  fill_in 'Email', with: 'helenshelina@gmail.com'
-  fill_in 'Password', with: '278948592'
+  fill_login_form
+  # fill_in 'Email', with: 'helenshelina@gmail.com'
+  # fill_in 'Password', with: '278948592'
 end
 
 When(/^clicks Log in button$/) do
