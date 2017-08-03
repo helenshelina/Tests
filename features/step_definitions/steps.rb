@@ -8,8 +8,9 @@ Given(/^Log in is opened$/) do
 end
 
 When(/^Annalisa fills login form with valid credentials$/) do
-  @login_page.email_address.set 'helenshelina@gmail.com'
-  @login_page.password.set '278948592'
+  fill_login_form
+  #@login_page.email_address.set 'helenshelina@gmail.com'
+  #@login_page.password.set '278948592'
 
 end
 

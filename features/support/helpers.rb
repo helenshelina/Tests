@@ -1,9 +1,11 @@
-require '/features/pages/login_page'
+require_relative '../pages/login_page.rb'
 
 module LoginPageHelper
   def fill_login_form
-    fill_in Login.email_address, :with => "Mocra"
-    fill_in Login.password, :with => "12 345 678 901"
+
+    @login_page.email_address.set 'helenshelina@gmail.com'
+    @login_page.password.set '278948592'
+
   end
 end
 World(LoginPageHelper)
