@@ -1,6 +1,6 @@
 Feature: Login page regression tests
 
-  Background:
+  #Background:
   #  Given user Annalisa is a registered user
 
   Scenario: user is able to log in into app with valid credentials from Lofin page

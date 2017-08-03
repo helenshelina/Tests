@@ -2,12 +2,14 @@ Given(/^user Annalisa is a registered user$/) do
 end
 
 Given(/^Log in is opened$/) do
-  visit '/users/sign_in'
+  #visit '/users/sign_in'
+  @login_page = Login.new
+  @login_page.load
 end
 
 When(/^Annalisa fills login form with valid credentials$/) do
-  fill_in 'Email address', with: 'helenshelina@gmail.com'
-  fill_in 'Password', with: '278948592'
+  @login_page.email_address.set 'helenshelina@gmail.com'
+  @login_page.password.set '278948592'
 
 end
 
@@ -17,9 +19,9 @@ When(/^Annalisa fills form with valid credentials$/) do
 end
 
 When(/^clicks Log in button$/) do
-  within ('.signin-form-container') do
-    click_on 'Log in'
-  end
+   within ('.signin-form-container') do
+     click_on 'Log in'
+   end
   sleep 3
 end
 
