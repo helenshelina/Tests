@@ -3,6 +3,6 @@ class Login < SitePrism::Page
 
   element :email_address_field, '#user_email'
   element :password_field, '#user_password'
-  element :login_btn, "#log-in-submit-button"
+  element :confirm_btn, 'input[type="submit"]'
   element :forgot_pass_btn, 'a[href="/users/password/new"]'
 end

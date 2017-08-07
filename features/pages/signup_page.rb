@@ -3,5 +3,5 @@ class SignUp < SitePrism::Page
 
   element :email_address_field, '#user_email'
   element :password_field, '#user_password'
-  element :signup_btn, "#sign-up"
+  element :confirm_btn, 'input[type="submit"]'
 end

@@ -12,7 +12,7 @@ Given(/^Login page is opened$/) do
   @app.login_page.load
 end
 
-When(/^Annalisa logs in with valid credentials$/) do
+When(/^(.+) logs in with valid credentials$/) do |user|
   user_log_in(@user_email , @user_password)
 end
 
@@ -20,28 +20,28 @@ Given(/^Sign up page is opened$/) do
   @app.signup_page.load
 end
 
-When(/^Annalisa fills form with valid credentials$/) do
-  login_from_signup_page(@user_email , @user_password)
+When(/^(.+) fills form with valid credentials$/) do |user|
+  user_log_in(@user_email , @user_password)
 end
 
-Then(/^she should see a user name in the top of the page$/) do
+Then(/^(.+) should see a user name in the top of the page$/) do |user|
     expect(page).to have_content @user_name
 end
 
-When(/^Annalisa tries to login$/) do
+When(/^(.+) tries to login$/) do |user|
   @app.login_page.load
 end
 
-When(/^provides (.+) and (.+)$/) do |email, password|
-  user_log_in(email, password)
+When(/^(.+) provides (.+) and (.+)$/) do |user, email, password|
+    user_log_in(email, password)
 end
 
-Then(/^Annalisa should not be logged in$/) do
+Then(/^(.+) should not be logged in$/) do |user|
     expect(@app.login_page).to_not have_content @user_name
 end
 
 Then(/^should see an error message$/) do
-  expect(@app.login_page).to have_content 'Incorrect email/password'
+  expect(@app.login_page).to have_content 'Incorrect email/password. Forgot your password?'
 end
 
 When(/^(.+) clicks forgot password$/) do |user|
