@@ -1,92 +1,62 @@
-Given(/^user Annalisa is a registered user$/) do
-end
-
-Given(/^Log in is opened$/) do
-  #visit '/users/sign_in'
-  @login_page = Login.new
-  @login_page.load
-end
-
-When(/^Annalisa fills login form with valid credentials$/) do
-  fill_login_form
-  #@login_page.email_address.set 'helenshelina@gmail.com'
-  #@login_page.password.set '278948592'
-
-end
-
-When(/^Annalisa fills form with valid credentials$/) do
-  fill_login_form
-  # fill_in 'Email', with: 'helenshelina@gmail.com'
-  # fill_in 'Password', with: '278948592'
-end
-
-When(/^clicks Log in button$/) do
-   within ('.signin-form-container') do
-     click_on 'Log in'
-   end
-  sleep 3
-end
-
-Then(/^Annalisa should see a user name in the top of the page$/) do
-    expect(page).to have_content 'Helen Shelina'
-end
-
-Given(/^Sign up is opened$/) do
-visit '/users/sign_up'
-end
-
-When(/^clicks Sign up with Email button$/) do
-  click_on 'Sign up with Email'
-end
-
-When(/^Annalisa tries to login$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When(/^provides valid and fgrfdfere$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^Annalisa should not be logged in$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^should see an error message$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When(/^provides rgrgre@gre\.ge and valid$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When(/^provides fgdfg@fgfd\.df and dfdfsdfs$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^(.+) is (.+) user$/) do |user, registered|
+  if registered =='a registered'
+    @user_email = 'k105674@mvrht.net'
+    @user_password = 'mvrhtmvrht'
+    @user_name = 'K105674 Mvrht'
+  else
+    @user_email = 'k105891@mvrht.net'
+  end
 end
 
 Given(/^Login page is opened$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @app.login_page.load
 end
 
-When(/^Annalisa clicks forgot password$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^Annalisa logs in with valid credentials$/) do
+  user_log_in(@user_email , @user_password)
+end
+
+Given(/^Sign up page is opened$/) do
+  @app.signup_page.load
+end
+
+When(/^Annalisa fills form with valid credentials$/) do
+  login_from_signup_page(@user_email , @user_password)
+end
+
+Then(/^she should see a user name in the top of the page$/) do
+    expect(page).to have_content @user_name
+end
+
+When(/^Annalisa tries to login$/) do
+  @app.login_page.load
+end
+
+When(/^provides (.+) and (.+)$/) do |email, password|
+  user_log_in(email, password)
+end
+
+Then(/^Annalisa should not be logged in$/) do
+    expect(@app.login_page).to_not have_content @user_name
+end
+
+Then(/^should see an error message$/) do
+  expect(@app.login_page).to have_content 'Incorrect email/password'
+end
+
+When(/^(.+) clicks forgot password$/) do |user|
+  click_link 'Forgot your password?'
+  expect(@app.forgotpass_page).to have_content 'Forgot your password?'
 end
 
 When(/^fills and confirm the form$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  user_forgot_password(@user_email)
 end
 
-Then(/^Annalisa sees a success message$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^(.+) sees a success message$/) do |user|
+  expect(@app.forgotpass_page).to have_content 'You will receive an email with instructions about how to reset your password in a few minutes.'
 end
 
-Given(/^Janie is not registered$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When(/^Janie clicks forgot password$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^Janie sees an error message$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^(.+) sees an error message$/) do |user|
+  expect(@app.forgotpass_page).to have_content 'Oops, something went wrong!'
 end
